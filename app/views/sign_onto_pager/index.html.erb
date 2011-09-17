@@ -1,0 +1,43 @@
+
+<div style="color: #0b0; text-align: center"><%= flash[:notice ]%></div>
+<div style="color: #d00; text-align: center"><%= flash[:error ]%></div>
+
+<%= form_tag "/sign_onto_pager/add_pager" do -%>
+
+<table align="center">
+	<tr valign="middle">
+		<td style='font-size: 50px'>
+			1.
+		</td>
+		<td width="10">&nbsp;</td>
+		<td style='font-size: 20px'>
+			<br/>
+			Select a Virtual Pager:<br/>
+			<%= select_tag "virtual_pager_id", options_from_collection_for_select(@virtual_pagers, "id", "name") %>
+		</td>
+	</tr>
+	<tr valign="middle">
+		<td style='font-size: 50px'>
+			2.
+		</td>
+		<td width="10">&nbsp;</td>
+		<td style='font-size: 20px'>
+			<br/>
+			Enter your Pager Number:<br/>
+			<%= text_field_tag 'pager_number' %>
+		</td>
+	</tr>
+	<tr valign="middle">
+		<td style='font-size: 50px'>
+			3.
+		</td>
+		<td width="10">&nbsp;</td>
+		<td style='font-size: 20px'>
+			<br/>
+			Click to Sign onto Pager:<br/>
+			<%= submit_tag 'Sign On Pager' %>
+		</td>
+	</tr>
+</table>
+
+<% end %>

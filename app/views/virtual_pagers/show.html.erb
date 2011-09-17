@@ -30,6 +30,12 @@
   <%= @virtual_pager.active %>
 </p>
 
+<p>
+	<b>All signed on pagers:</b><br/>
+	<% @virtual_pager.pagers.each do |pager| %>
+		<%= number_to_phone(pager.pager_number, :area_code => true) %><br/>
+	<% end %>
+</p>
 
 <%= link_to 'Edit', edit_virtual_pager_path(@virtual_pager) %> |
 <%= link_to 'Back', virtual_pagers_path %>

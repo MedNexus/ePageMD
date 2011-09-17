@@ -1,9 +1,14 @@
 body {
-  background-color: #fff;
   color: #333;
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
   line-height: 18px; }
+
+h1 {
+	font-size: 20px;
+	border-bottom: 3px double silver;
+	padding-bottom: 7px;
+}
 
 p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;

@@ -1,8 +1,12 @@
+<center>
 <h1>Manage Virtual Pagers</h1>
 
+<%= link_to 'Create New Virtual pager', new_virtual_pager_path %>
+<br/><br/>
 <table border=0 cellspacing=0 cellpadding=10 style="border: 1px solid black">
   <tr style="text-align: left; background-color: #000; color: white">
     <th>Name</th>
+	<th>Current #</th>
     <th>Min</th>
     <th>Max</th>
     <th>Log</th>
@@ -10,8 +14,16 @@
   </tr>
 
 <% @virtual_pagers.each do |virtual_pager| %>
-  <tr style="text-align: center; background-color: <%= cycle('#ddd','#fff')%>">
+	<% 
+	if virtual_pager.number_of_pagers_signed_on < virtual_pager.min_active
+		color = '#fcc'
+	else
+		color = cycle('#ddd', '#fff')
+	end
+	%>
+  <tr style="text-align: center; background-color: <%= color %>">
     <td style="padding-right: 15px"><%= virtual_pager.name %></td>
+	<td><%= virtual_pager.number_of_pagers_signed_on %></td>
     <td><%= virtual_pager.min_active %></td>
     <td><%= virtual_pager.max_active %></td>
     <td><%= virtual_pager.log_messages %></td>
@@ -23,5 +35,4 @@
 </table>
 
 <br />
-
-<%= link_to 'Create Virtual pager', new_virtual_pager_path %>
+</center>
