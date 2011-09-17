@@ -28,6 +28,7 @@ class VirtualPager < ActiveRecord::Base
   end
   
   def remove_pager(pager_num)
+    return self.pagers.find_by_pager_number(pager_num).destroy
   end
   
 end

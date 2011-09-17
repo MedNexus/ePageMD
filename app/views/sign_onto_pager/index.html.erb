@@ -1,5 +1,6 @@
+<h1 style='text-align: center'>Sign On / Off Virtual Pagers</h1>
 
-<div style="color: #0b0; text-align: center"><%= flash[:notice ]%></div>
+<div style="color: #0b0; text-align: center"><%=h flash[:notice ]%></div>
 <div style="color: #d00; text-align: center"><%= flash[:error ]%></div>
 
 <%= form_tag "/sign_onto_pager/add_pager" do -%>
@@ -34,10 +35,22 @@
 		<td width="10">&nbsp;</td>
 		<td style='font-size: 20px'>
 			<br/>
-			Click to Sign onto Pager:<br/>
-			<%= submit_tag 'Sign On Pager' %>
+			What would you like to do?:<br/>
+			<%= radio_button_tag(:sign_on_off, "ON") %> Sign On 
+			<%= radio_button_tag(:sign_on_off, "OFF") %> Sign Off
+		</td>
+	</tr>
+	<tr valign="middle">
+		<td style='font-size: 50px'>
+			&nbsp;
+		</td>
+		<td width="10">&nbsp;</td>
+		<td>
+				<br/>
+				<%= submit_tag 'Update Virtual Pager', :style => "font-size: 20px" %>
 		</td>
 	</tr>
 </table>
+
 
 <% end %>
