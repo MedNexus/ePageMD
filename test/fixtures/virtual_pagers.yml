@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  min_active: 1
+  max_active: 1
+  send_alerts: false
+  log_messages: false
+  active: false
+
+two:
+  name: MyString
+  min_active: 1
+  max_active: 1
+  send_alerts: false
+  log_messages: false
+  active: false

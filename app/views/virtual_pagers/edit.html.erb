@@ -1,0 +1,27 @@
+<h1>Edit: <%= @virtual_pager.name %></h1>
+
+<%= render 'form' %>
+
+<%= form_tag "/virtual_pagers/bulk_update" do -%>
+<table cellpadding=0 cellspacing=0 style="padding: 8px; width: 400px">
+	<tr>
+		<td colspan=2><b>Manage Signed On Pagers</b></td>
+	</tr>
+	<tr valign="top">
+		<td style="padding-left: 20px; width: 180px">Check pagers to sign off:</td>
+		<td><% @virtual_pager.pagers.each do |pager| %>
+				<%= check_box pager.id, "pager_ids"%>
+				<%= number_to_phone(pager.pager_number, :area_code => true) %><br/>
+			<% end %>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td style="padding-left: 20px">Enter pagers to sign on<br/>one per line</td>
+		<td><%= text_area(:params, :add_pagers, :cols => 25, :rows => 5)%></td>
+	</tr>
+
+</table>
+<% end %>
+
+<%= link_to 'Show', @virtual_pager %> |
+<%= link_to 'Back', virtual_pagers_path %>
