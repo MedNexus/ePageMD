@@ -11,31 +11,35 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :min_active %><br />
-    <%= f.number_field :min_active %>
-  </div>
-  <div class="field">
-    <%= f.label :max_active %><br />
-    <%= f.number_field :max_active %>
-  </div>
-  <div class="field">
-    <%= f.label :send_alerts %><br />
-    <%= f.check_box :send_alerts %>
-  </div>
-  <div class="field">
-    <%= f.label :log_messages %><br />
-    <%= f.check_box :log_messages %>
-  </div>
-  <div class="field">
-    <%= f.label :active %><br />
-    <%= f.check_box :active %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<table cellpadding=0 cellspacing=0 style="border: 1px solid black; padding: 8px">
+	<tr>
+		<td colspan=2>Required fields</td>
+	</tr>
+	<tr>
+		<td style="padding-left: 20px;">Virtual Pager Name</td>
+		<td style="padding-left: 10px;"><%= f.text_field :name %></td>
+	</tr>
+	<tr>
+		<td style="padding-left: 20px">Log Messages</td>
+		<td style="padding-left: 10px;"><%= f.check_box :log_messages %></td>
+	</tr>
+	<tr><td colspan=2>&nbsp;</td></tr>
+	<tr>
+		<td colspan=2>Optional Settings</td>
+	</tr>
+	
+	<tr>
+		<td style="padding-left: 20px">Min Required Pagers</td>
+		<td style="padding-left: 10px;"><%= f.number_field :min_active, :size => 3 %></td>
+	</tr>
+	<tr>
+		<td style="padding-left: 20px">Max Allowed Pagers</td>
+		<td style="padding-left: 10px;"><%= f.number_field :max_active, :size => 3 %></td>
+	</tr>
+	<tr><td colspan=2>&nbsp;</td></tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td style="padding-left: 10px;"> <%= f.submit %></td>
+	</tr>
+</table>
 <% end %>
