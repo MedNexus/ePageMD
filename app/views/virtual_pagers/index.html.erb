@@ -1,0 +1,31 @@
+<h1>Manage Virtual Pagers</h1>
+
+<table border=1 cellspacing=0 cellpadding=3>
+  <tr style="text-align: left">
+    <th>Name</th>
+    <th>Min active</th>
+    <th>Max active</th>
+    <th>Send Warnings</th>
+    <th>Log messages</th>
+    <th>Active</th>
+    <th colspan=3></th>
+  </tr>
+
+<% @virtual_pagers.each do |virtual_pager| %>
+  <tr>
+    <td><%= virtual_pager.name %></td>
+    <td><%= virtual_pager.min_active %></td>
+    <td><%= virtual_pager.max_active %></td>
+    <td><%= virtual_pager.send_alerts %></td>
+    <td><%= virtual_pager.log_messages %></td>
+    <td><%= virtual_pager.active %></td>
+    <td colspan=3><%= link_to 'View', virtual_pager %> | 
+	<%= link_to 'Edit', edit_virtual_pager_path(virtual_pager) %> | 
+    <%= link_to 'Delete', virtual_pager, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Create Virtual pager', new_virtual_pager_path %>

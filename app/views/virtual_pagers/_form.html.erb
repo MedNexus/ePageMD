@@ -1,0 +1,41 @@
+<%= form_for(@virtual_pager) do |f| %>
+  <% if @virtual_pager.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@virtual_pager.errors.count, "error") %> prohibited this virtual_pager from being saved:</h2>
+
+      <ul>
+      <% @virtual_pager.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :min_active %><br />
+    <%= f.number_field :min_active %>
+  </div>
+  <div class="field">
+    <%= f.label :max_active %><br />
+    <%= f.number_field :max_active %>
+  </div>
+  <div class="field">
+    <%= f.label :send_alerts %><br />
+    <%= f.check_box :send_alerts %>
+  </div>
+  <div class="field">
+    <%= f.label :log_messages %><br />
+    <%= f.check_box :log_messages %>
+  </div>
+  <div class="field">
+    <%= f.label :active %><br />
+    <%= f.check_box :active %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

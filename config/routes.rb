@@ -1,4 +1,6 @@
 VirtualPagers::Application.routes.draw do
+  resources :virtual_pagers
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
