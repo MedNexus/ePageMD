@@ -1,6 +1,7 @@
 VirtualPagers::Application.routes.draw do
   match 'sign_onto_pager/add_pager' => "sign_onto_pager#add_pager"
-  resources :virtual_pagers, :sign_onto_pager
+  match 'send_page/send_page' => "send_page#send_page"
+  resources :virtual_pagers, :sign_onto_pager, :send_page
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

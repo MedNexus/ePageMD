@@ -16,3 +16,7 @@ body {
     color: #000000;
     margin: 0;
 }
+
+#grayText {
+	width: 250px; font-size: 12px; line-height: 16px; padding-top: 25px; color: gray; font-family: arial; text-align: justify;
+}

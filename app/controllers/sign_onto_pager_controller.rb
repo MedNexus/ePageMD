@@ -1,15 +1,15 @@
 class SignOntoPagerController < ApplicationController
   
   def index
-    @virtual_pagers = VirtualPager.find(:all)
+    @virtual_pagers = VirtualPager.find(:all, :order => "name")
   end
   
   def add_pager
     # validate form first
-    flash[:error] = ""
-    flash[:error] += "Must select a valid pager id <br/>" if params[:virtual_pager_id] == nil
-    flash[:error] += "Must enter a pager number <br/>" if params[:pager_number] == ""
-    flash[:error] += "Must select either sign on or sign off <br/>" if params[:sign_on_off] == nil
+    flash[:error] = "".html_safe
+    flash[:error] += "Must select a valid pager id <br/>".html_safe if params[:virtual_pager_id] == nil
+    flash[:error] += "Must enter a pager number <br/>".html_safe if params[:pager_number] == ""
+    flash[:error] += "Must select either sign on or sign off <br/>".html_safe if params[:sign_on_off] == nil
     if flash[:error] != ""
       redirect_to :action => 'index' 
       return nil

@@ -1,0 +1,84 @@
+<h1 style='text-align: center'>Send Page</h1>
+
+<div style="color: #0b0; text-align: center"><%=h flash[:notice ]%></div>
+<div style="color: #d00; text-align: center"><%= flash[:error ]%></div>
+
+<%= form_tag "/send_page/send_page" do -%>
+
+<table align="center">
+	<tr valign="top">
+		<td style='font-size: 50px'>
+			1.
+		</td>
+		<td width="10">&nbsp;</td>
+		<td style='font-size: 20px'>
+			Select a Pager:<br/>
+			<%= select_tag "virtual_pager_id", options_from_collection_for_select(@virtual_pagers, "id", "name"), :style => "font-size: 20px", :include_blank => true %>
+			<br/>
+			<br/>
+		</td>
+		<td>
+			&nbsp;
+		</td>
+	</tr>
+	<tr valign="top">
+		<td style='font-size: 50px'>
+			2.
+		</td>
+		<td width="10">&nbsp;</td>
+		<td style='font-size: 20px'>
+			Enter Patient ID:<br/>
+			<%= text_field_tag 'patient_id', nil, :style => 'font-size: 20px' %>
+			<br/><br/>
+		</td>
+		<td>
+			<div id="grayText">Patient Initials followed by last four digits of MRN. eg: SD#1029</div>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td style='font-size: 50px'>
+			3.
+		</td>
+		<td width="10">&nbsp;</td>
+		<td style='font-size: 20px'>
+			Enter your Your Message:<br/>
+			<%= text_area(:message, :body, :cols => 40, :rows => 5) %>
+			<br/><br/>
+		</td>
+		<td>
+			<div id="grayText">Include your name, call back number, and brief message. Limited to 200 characters.</div>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td style='font-size: 50px'>
+			4.
+		</td>
+		<td width="10">&nbsp;</td>
+		<td style='font-size: 20px'>
+			How Urgent is this Message?:<br/>
+			<span style='font-size: 15px'>
+			<%= radio_button_tag(:urgency, "1") %> Emergent <span id="grayText">(call back immediately)</span><br/>
+			<%= radio_button_tag(:urgency, "2") %> Urgent <span id="grayText">(call back in 5 minutes)</span><br/>
+			<%= radio_button_tag(:urgency, "3", true) %> Routine <span id="grayText">(call back within 30 minutes)</span><br/>
+			<%= radio_button_tag(:urgency, "4") %> FYI <span id="grayText">(No call back necessary)</span><br/>
+			</span>
+		</td>
+		<td>
+			<div id="grayText">Specifying an urgency will allow physicians to better triage pages. 
+				Please use FYI pages for med refills, non-critical lab results, etc.</div>
+		</td>
+	</tr>
+	<tr valign="middle">
+		<td style='font-size: 50px'>
+			&nbsp;
+		</td>
+		<td width="10">&nbsp;</td>
+		<td>
+				<br/>
+				<%= submit_tag 'Send Page', :style => "font-size: 20px" %>
+		</td>
+	</tr>
+</table>
+
+
+<% end %>
