@@ -1,0 +1,42 @@
+<center>
+<h1>Manage Virtual Pagers</h1>
+<div style="color: #0b0; text-align: center"><%=h flash[:notice ]%></div>
+<%= link_to 'Create New Virtual pager', new_virtual_pager_path %>
+<br/><br/>
+<table border=0 cellspacing=0 cellpadding=10 style="border: 1px solid black">
+  <tr style="text-align: left; background-color: #000; color: white">
+    <th>Name</th>
+	<th>Current #</th>
+    <th>Min</th>
+    <th>Max</th>
+    <th>Log</th>
+    <th colspan=3></th>
+  </tr>
+
+<% @virtual_pagers.each do |virtual_pager| %>
+	<%
+	begin
+		if virtual_pager.number_of_pagers_signed_on < virtual_pager.min_active
+			color = '#fcc'
+		else
+			color = cycle('#ddd', '#fff')
+		end
+	rescue
+		color = cycle('#ddd', '#fff')
+	end
+	%>
+  <tr style="text-align: center; background-color: <%= color %>">
+    <td style="padding-right: 15px"><%= virtual_pager.name %></td>
+	<td><%= virtual_pager.number_of_pagers_signed_on %></td>
+    <td><%= virtual_pager.min_active %></td>
+    <td><%= virtual_pager.max_active %></td>
+    <td><%= virtual_pager.log_messages %></td>
+    <td colspan=3><%= link_to 'View Log', virtual_pager %> | 
+	<%= link_to 'Edit', edit_virtual_pager_path(virtual_pager) %> | 
+    <%= link_to 'Delete', virtual_pager, :confirm => 'Are you sure?', :method => :delete, :style => 'color: red' %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+</center>

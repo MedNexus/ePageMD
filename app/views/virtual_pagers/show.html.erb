@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @virtual_pager.name %>
+</p>
+
+<p>
+  <b>Min active:</b>
+  <%= @virtual_pager.min_active %>
+</p>
+
+<p>
+  <b>Max active:</b>
+  <%= @virtual_pager.max_active %>
+</p>
+
+<p>
+  <b>Send alerts:</b>
+  <%= @virtual_pager.send_alerts %>
+</p>
+
+<p>
+  <b>Log messages:</b>
+  <%= @virtual_pager.log_messages %>
+</p>
+
+<p>
+  <b>Active:</b>
+  <%= @virtual_pager.active %>
+</p>
+
+<p>
+	<b>All signed on pagers:</b><br/>
+	<% @virtual_pager.pagers.each do |pager| %>
+		<%= number_to_phone(pager.pager_number, :area_code => true) %><br/>
+	<% end %>
+</p>
+
+<%= link_to 'Edit', edit_virtual_pager_path(@virtual_pager) %> |
+<%= link_to 'Back', virtual_pagers_path %>

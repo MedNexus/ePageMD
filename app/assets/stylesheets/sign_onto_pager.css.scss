@@ -1,0 +1,20 @@
+table, tr, td {
+	font-family: Georgia;
+	font-size: 20px;
+	line-height: 24px
+}
+
+#mainContainer {
+	background-image: url(/images/logo-banner.png);
+	background-repeat: repeat-x;
+	background-position: center top;
+	border-radius: 20px;
+	background-color:#eee;
+	width:700px;
+	border:1px solid #aaa;
+	padding: 20px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 60px;
+	padding-top: 10px
+}

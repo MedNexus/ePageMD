@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>VirtualPagers</title>
+  <%= stylesheet_link_tag    "application" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<div style="width: 600px; border: 1px solid #ccc; background-color: #ddd; margin-left: auto; margin-right: auto; margin-top: 40px; border-radius: 20px;">
+	<center>
+<%= yield %>
+</center>
+</div>
+
+</body>
+</html>
