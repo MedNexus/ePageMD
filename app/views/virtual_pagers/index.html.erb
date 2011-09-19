@@ -31,7 +31,7 @@
     <td><%= virtual_pager.min_active %></td>
     <td><%= virtual_pager.max_active %></td>
     <td><%= virtual_pager.log_messages %></td>
-    <td colspan=3><%= link_to 'View Log', virtual_pager %> | 
+    <td colspan=3><%= link_to 'View Log', {:controller => "view_logs", :action => "index", :id => virtual_pager.id} %> | 
 	<%= link_to 'Edit', edit_virtual_pager_path(virtual_pager) %> | 
     <%= link_to 'Delete', virtual_pager, :confirm => 'Are you sure?', :method => :delete, :style => 'color: red' %></td>
   </tr>
