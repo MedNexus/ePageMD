@@ -4,6 +4,7 @@ include REXML
 
 class VirtualPager < ActiveRecord::Base
   has_many :pagers
+  has_many :page_logs
   
   def send_page(msg) 
     # don't send a request if there is no point!
@@ -21,6 +22,19 @@ class VirtualPager < ActiveRecord::Base
     
         # send request
         response = Net::HTTP.start(url.host, url.port) {|http| http.request(request)}
+        
+        # log the page if we're supposed to
+        if self.log_messages
+          doc = Document.new response.body
+          if doc.root.elements["wctp-Confirmation"].elements["wctp-Success"]
+            status_code = 200 
+            status_message = "Message accepted by wctp.amsmsg.net"
+          else
+            status_code = doc.root.elements["wctp-Confirmation"].elements["wctp-Failure"].attributes["errorCode"]
+            status_message = doc.root.elements["wctp-Confirmation"].elements["wctp-Failure"].attributes["errorText"]
+          end
+          self.page_logs.create(:pager_number => pn, :message => msg, :status => status_code, :status_message => status_message)
+        end
     end
   end
   

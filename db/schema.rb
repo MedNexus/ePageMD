@@ -10,7 +10,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110917113708) do
+ActiveRecord::Schema.define(:version => 20110919201412) do
+
+  create_table "page_logs", :force => true do |t|
+    t.text     "pager_number"
+    t.integer  "virtual_pager_id"
+    t.text     "message"
+    t.integer  "status"
+    t.text     "status_message"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "pagers", :force => true do |t|
     t.text     "pager_number"
