@@ -14,6 +14,8 @@ class SendPageController < ApplicationController
       return nil
     end
     
+    vp = VirtualPager.find_by_id(params[:virtual_pager_id])
+    vp.send_page(params[:message][:body]) if vp
     redirect_to :action => 'index'
   end
   
