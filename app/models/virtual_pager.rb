@@ -8,18 +8,20 @@ class VirtualPager < ActiveRecord::Base
   def send_page(msg) 
     # don't send a request if there is no point!
     return false if self.number_of_pagers_signed_on < 1
+    pager_numbers = self.all_pager_numbers
+    pager_numbers.each do |pn|
+        # American Messaging WCTP URL
+        target_url = 'http://wctp.amsmsg.net/wctp'
+        url = URI.parse(target_url)
+        request = Net::HTTP::Post.new(url.path)
     
-    # American Messaging WCTP URL
-    target_url = 'http://wctp.amsmsg.net/wctp'
-    url = URI.parse(target_url)
-    request = Net::HTTP::Post.new(url.path)
+        # generate XMl request
+        xml_request = VirtualPager.create_xml_single(msg,pn)
+        request.body = xml_request
     
-    # generate XMl request
-    xml_request = VirtualPager.create_xml_single(msg,self.pagers.first.pager_number)
-    request.body = xml_request
-    
-    # send request
-    response = Net::HTTP.start(url.host, url.port) {|http| http.request(request)}
+        # send request
+        response = Net::HTTP.start(url.host, url.port) {|http| http.request(request)}
+    end
   end
   
   def self.create_xml_single(msg,pager)
@@ -67,6 +69,10 @@ class VirtualPager < ActiveRecord::Base
   
   def remove_pager(pager_num)
     return self.pagers.find_by_pager_number(pager_num).destroy
+  end
+  
+  def all_pager_numbers
+    return self.pagers.collect{|x| x.pager_number}
   end
   
 end
