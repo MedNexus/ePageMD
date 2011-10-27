@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# promote staging branch to heroku staging server
+
+if [ -z "$1" ]
+then
+	echo "must specify name for release branch"
+	exit;
+fi
+
+git push production master
+heroku rake db:migrate --remote production
