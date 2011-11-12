@@ -1,6 +1,7 @@
-<br/><br/>
-<div class="notice"><%= flash[:notice ]%></div>
-<div class="error"><%= flash[:error ]%></div>
+<% if flash[:notice] or flash[:error ] %>
+	<div class="notice"><%= flash[:notice ]%></div>
+	<div class="error"><%= flash[:error ]%></div>
+<% end %>
 
 <%= form_tag :action => 'send_page' do -%>
 
