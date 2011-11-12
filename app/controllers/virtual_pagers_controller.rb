@@ -1,4 +1,5 @@
 class VirtualPagersController < ApplicationController
+  before_filter :authenticate_user!
   # GET /virtual_pagers
   # GET /virtual_pagers.json
   def index
@@ -44,7 +45,8 @@ class VirtualPagersController < ApplicationController
 
     respond_to do |format|
       if @virtual_pager.save
-        format.html { redirect_to :action => 'index', :notice => 'Virtual pager was successfully created.' }
+        flash[:notice] = 'Virtual pager was successfully created.'
+        format.html { redirect_to :action => 'index'}
         format.json { render :json => @virtual_pager, :status => :created, :location => @virtual_pager }
       else
         format.html { render :action => "new" }
@@ -60,7 +62,8 @@ class VirtualPagersController < ApplicationController
 
     respond_to do |format|
       if @virtual_pager.update_attributes(params[:virtual_pager])
-        format.html { redirect_to :action => 'index', :notice => 'Virtual pager was successfully updated.' }
+        flash[:notice] = 'Virtual pager was successfully updated.'
+        format.html { redirect_to :action => 'index'}
         format.json { head :ok }
       else
         format.html { render :action => "edit" }
