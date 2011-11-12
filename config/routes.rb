@@ -1,4 +1,6 @@
 VirtualPagers::Application.routes.draw do
+  devise_for :users
+
   match 'sign_onto_pager/add_pager' => "sign_onto_pager#add_pager"
   match 'send_page/send_page' => "send_page#send_page"
   resources :virtual_pagers, :sign_onto_pager, :send_page, :view_logs
@@ -52,7 +54,7 @@ VirtualPagers::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+  root :to => 'send_page#index'
 
   # See how all your routes lay out with "rake routes"
 

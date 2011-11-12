@@ -9,8 +9,10 @@
 <body>
 
 <div style="width: 600px; border: 1px solid #ccc; background-color: #ddd; margin-left: auto; margin-right: auto; margin-top: 40px; border-radius: 20px;">
-	<center>
-<%= yield %>
+<center>
+	<p class="notice"><%= notice %></p>
+	<p class="alert"><%= alert %></p>
+	<%= yield %>
 </center>
 </div>
 
