@@ -13,7 +13,11 @@
 		<td width="10">&nbsp;</td>
 		<td style='font-size: 20px'>
 			Select a Pager:<br/>
-			<%= select_tag "virtual_pager_id", options_from_collection_for_select(@virtual_pagers, "id", "name"), :style => "font-size: 20px", :include_blank => true %>
+			<%-
+				style = "font-size: 20px; width: 300px;"
+				style += "border: 2px solid red;" if @error[:pager]
+			%>
+			<%= select_tag "virtual_pager_id", options_from_collection_for_select(@virtual_pagers, "id", "name"), :style => style, :include_blank => true %>
 			<br/>
 			<br/>
 		</td>
@@ -28,7 +32,7 @@
 		<td width="10">&nbsp;</td>
 		<td style='font-size: 20px'>
 			Enter Patient ID:<br/>
-			<%= text_field_tag 'patient_id', params[:patient_id], :style => 'font-size: 20px' %>
+			<%= text_field_tag 'patient_id', params[:patient_id], :style => 'font-size: 20px; width: 300px;' %>
 			<br/><br/>
 		</td>
 		<td>
@@ -42,7 +46,11 @@
 		<td width="10">&nbsp;</td>
 		<td style='font-size: 20px'>
 			Enter your Your Message:<br/>
-			<%= text_area_tag :message, params[:message], :cols => 40, :rows => 5 %>
+			<%-
+				style = ""
+				style += "border: 2px solid red;" if @error[:pager]
+			%>
+			<%= text_area_tag :message, params[:message], :cols => 41, :rows => 5, :style => style %>
 			<br/><br/>
 		</td>
 		<td>
