@@ -1,11 +1,10 @@
-<h1 style='text-align: center'>Send Page</h1>
+<br/><br/>
+<div class="notice"><%= flash[:notice ]%></div>
+<div class="error"><%= flash[:error ]%></div>
 
-<div style="color: #0b0; text-align: center"><%=h flash[:notice ]%></div>
-<div style="color: #d00; text-align: center"><%= flash[:error ]%></div>
+<%= form_tag :action => 'send_page' do -%>
 
-<%= form_tag "/send_page/send_page" do -%>
-
-<table align="center">
+<table align="center" style="line-height: 25px">
 	<tr valign="top">
 		<td style='font-size: 50px'>
 			1.
@@ -28,7 +27,7 @@
 		<td width="10">&nbsp;</td>
 		<td style='font-size: 20px'>
 			Enter Patient ID:<br/>
-			<%= text_field_tag 'patient_id', nil, :style => 'font-size: 20px' %>
+			<%= text_field_tag 'patient_id', params[:patient_id], :style => 'font-size: 20px' %>
 			<br/><br/>
 		</td>
 		<td>
@@ -42,7 +41,7 @@
 		<td width="10">&nbsp;</td>
 		<td style='font-size: 20px'>
 			Enter your Your Message:<br/>
-			<%= text_area(:message, :body, :cols => 40, :rows => 5) %>
+			<%= text_area_tag :message, params[:message], :cols => 40, :rows => 5 %>
 			<br/><br/>
 		</td>
 		<td>
@@ -79,6 +78,6 @@
 		</td>
 	</tr>
 </table>
-
+<br/><br/>
 
 <% end %>

@@ -1,10 +1,11 @@
 <center>
 <h1>Manage Virtual Pagers</h1>
-<div style="color: #0b0; text-align: center"><%=h flash[:notice ]%></div>
+<div style="color: #0b0; text-align: center"><%= flash[:notice ]%></div>
+<div style="color: #d00; text-align: center"><%= flash[:error ]%></div>
 <%= link_to 'Create New Virtual pager', new_virtual_pager_path %>
 <br/><br/>
 <table border=0 cellspacing=0 cellpadding=10 style="border: 1px solid black">
-  <tr style="text-align: left; background-color: #000; color: white">
+  <tr style="text-align: left; background-color: #000; color: white; line-height: 10px; font-family: arial">
     <th>Name</th>
 	<th>Current #</th>
     <th>Min</th>

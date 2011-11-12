@@ -10,12 +10,17 @@ body {
 	background-image: url('/assets/bg.gif');
 	background-color: #6b6b6b;
 	background-repeat: repeat-x;
-    font-family: "Lucida Grande", verdana, arial, helvetica, sans-serif;
+    font-family: "Georgia", times, serif;
     font-size: 12px;
-    line-height: 14px;
+    line-height: 16px;
     color: #000000;
     margin: 0;
 }
+
+h1 { font-size: 20px; font-family: verdana, arial, sans-serif; color: navy}
+
+.error {color: #d00; text-align: left; font-size: 16px; margin-left: 35px; margin-bottom: 30px}
+.notice {color: #0b0; text-align: left; font-size: 16px; margin-left: 35px; margin-bottom: 30px}
 
 #grayText {
 	width: 250px; font-size: 12px; line-height: 16px; padding-top: 25px; color: gray; font-family: arial; text-align: justify;
