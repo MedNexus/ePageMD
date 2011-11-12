@@ -70,7 +70,8 @@ class VirtualPager < ActiveRecord::Base
   end
   
   def is_pager_signed_on?(pager_number)
-    if self.pagers.find_by_pager_number(pager_number)
+    # verify pager number is type string for postgres, and search for it
+    if self.pagers.find_by_pager_number(pager_number.to_s)
       return true
     else
       return false
