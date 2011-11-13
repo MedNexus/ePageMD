@@ -5,6 +5,8 @@ include REXML
 class VirtualPager < ActiveRecord::Base
   has_many :pagers
   has_many :page_logs
+  validates_uniqueness_of :name
+  validates_presence_of :name
   
   def send_page(msg) 
     # don't send a request if there is no point!
