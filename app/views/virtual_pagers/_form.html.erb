@@ -1,13 +1,14 @@
 <%= form_for(@virtual_pager) do |f| %>
   <% if @virtual_pager.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@virtual_pager.errors.count, "error") %> prohibited this virtual_pager from being saved:</h2>
+      <div class='error'><%= pluralize(@virtual_pager.errors.count, "error") %> prohibited this virtual pager from being saved:
 
       <ul>
       <% @virtual_pager.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>
+</div>
     </div>
   <% end %>
 
@@ -39,8 +40,9 @@
 	<tr><td colspan=2>&nbsp;</td></tr>
 	<tr>
 		<td>&nbsp;</td>
-		<td style="padding-left: 10px;"> <%= f.submit %></td>
+		<td style="padding-left: 10px;"> <%= f.submit %> <%= link_to 'Cancel', virtual_pagers_path %></td>
 	</tr>
 </table>
+<br/><br/>
 <% end %>
 

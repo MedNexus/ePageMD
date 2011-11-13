@@ -27,4 +27,7 @@ VirtualPagers::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+  
+  # output debugging log info
+  config.log_level = Logger::WARN
 end
