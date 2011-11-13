@@ -4,7 +4,8 @@ VirtualPagers::Application.routes.draw do
   match 'sign_onto_pager/add_pager' => "sign_onto_pager#add_pager"
   match 'transmit' => 'send_page#send_page'
   match 'send_page' => 'send_page#index'
-  match 'view_logs/:id' => "view_logs#index"
+  match 'log/:id' => "view_logs#index"
+  match 'admin' => "virtual_pager#index" 
   resources :virtual_pagers, :sign_onto_pager, :send_page, :view_logs
 
   # You can have the root of your site routed with "root"

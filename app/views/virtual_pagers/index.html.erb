@@ -1,7 +1,6 @@
-<center>
+<div class="notice"><%= flash[:notice ]%></div>
+<div class="error"><%= flash[:error ]%></div>
 <h1>Manage Virtual Pagers</h1>
-<div style="color: #0b0; text-align: center"><%= flash[:notice ]%></div>
-<div style="color: #d00; text-align: center"><%= flash[:error ]%></div>
 <%= link_to 'Create New Virtual pager', new_virtual_pager_path %>
 <br/><br/>
 <table border=0 cellspacing=0 cellpadding=10 style="border: 1px solid black">
@@ -40,4 +39,3 @@
 </table>
 
 <br />
-</center>
