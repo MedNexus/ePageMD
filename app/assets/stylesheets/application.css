@@ -32,7 +32,7 @@ h1 { font-size: 20px; font-family: verdana, arial, sans-serif; color: black}
 .error {color: #d00; text-align: left; font-size: 16px; text-align: center; margin-bottom: 30px;}
 .notice {color: #0b0; text-align: left; font-size: 16px; text-align: center; margin-left: 35px; margin-bottom: 30px}
 
-#headerDiv {background-image: url('/assets/logo.png'); background-repeat:no-repeat; height: 50px; padding-top: 20px; width: 675px; border: 1px solid #ccc; background-color: #6a8de4; margin-left: auto; margin-right: auto; margin-top: 40px; border-radius: 20px; text-align: center; font-size: 16px;}
+#headerDiv {background-image: url('/assets/logo.png'); background-repeat:no-repeat; height: 50px; padding-top: 20px; width: 675px; border: 1px solid #777; background-color: #6a8de4; margin-left: auto; margin-right: auto; margin-top: 40px; border-radius: 20px; text-align: center; font-size: 16px;}
 #mainContentDiv {padding-top: 20px; width: 675px; border: 1px solid #ccc; background-color: #ddd; margin-left: auto; margin-right: auto; margin-top: 20px; border-radius: 20px; text-align: center;}
 #footerDiv {width: 650px; text-align: right; margin-left:auto; margin-right: auto; color: #444; margin-top: 8px}
 #grayText {width: 250px; font-size: 12px; line-height: 16px; padding-top: 25px; color: gray; font-family: arial; text-align: justify;}
