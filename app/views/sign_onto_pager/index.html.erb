@@ -1,11 +1,13 @@
-<h1 style='text-align: center'>Sign On / Off Virtual Pagers</h1>
+<h1 style='text-align: center'>Sign On / Off Pagers</h1>
+<%= link_to 'sign on/off multiple pagers', :action => 'multiple' %>
 
-<div class="notice"><%= flash[:notice ] %></div>
-<div class="error"><%= flash[:error ] %></div>
-
+<% if flash[:error] or flash[:notice] %>
+	<div class="notice"><%= flash[:notice ] %></div>
+	<div class="error"><%= flash[:error ] %></div>
+<% end %>
 <%= form_tag "/sign_onto_pager/add_pager" do -%>
 
-<table align="center">
+<table align="center" style="line-height: 25px">
 	<tr valign="middle">
 		<td style='font-size: 50px'>
 			1.
@@ -14,7 +16,7 @@
 		<td style='font-size: 20px'>
 			<br/>
 			Select a Virtual Pager:<br/>
-			<%= select_tag "virtual_pager_id", options_from_collection_for_select(@virtual_pagers, "id", "name"), :style => "font-size: 20px", :include_blank => true %>
+			<%= select_tag "virtual_pager_id", options_from_collection_for_select(@virtual_pagers, "id", "name"), :style => "font-size: 20px", :include_blank => true, :style => 'width: 220px' %>
 		</td>
 	</tr>
 	<tr valign="middle">

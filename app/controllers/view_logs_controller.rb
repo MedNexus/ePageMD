@@ -8,4 +8,5 @@ class ViewLogsController < ApplicationController
       redirect_to :controller => "virtual_pagers", :flash => {:error => "could not find virtual pager"}
     end
   end
+  
 end

@@ -17,11 +17,11 @@ body {
     margin: 0;
 }
 
-#headerDiv a:link {text-decoration:none; color: white}
+#headerDiv a:link {text-decoration:none; color: white; background-color: navy; padding: 5px; margin-right: 5px; border-radius: 5px}
 #headerDiv a:visited {text-decoration:none; color: white}
-#headerDiv a:hover {text-decoration:underline;}
+#headerDiv a:hover {text-decoration:none; background-color: blue}
 #headerDiv a:active {text-decoration:underline;}
-
+.active {background-color: black}
 #mainContentDiv a:link {text-decoration:none; color: navy}
 #mainContentDiv a:visited {text-decoration:none; color: navy}
 #mainContentDiv a:hover {text-decoration:underline;}
