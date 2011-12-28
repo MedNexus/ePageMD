@@ -22,6 +22,7 @@ class VirtualPager < ActiveRecord::Base
         xml_request = VirtualPager.create_xml_single(msg,pn)
         request.body = xml_request
     
+		# Multi-thread pages, improves page repsonsiveness to large blasts
         # send request
 		if PROXY['use_proxy']
 			response = Net::HTTP::Proxy(PROXY['proxy_url'], PROXY['proxy_port'], PROXY['proxy_username'], PROXY['proxy_password']).start(url.host, url.port) {|http| http.request(request)}
@@ -29,18 +30,24 @@ class VirtualPager < ActiveRecord::Base
 			response = Net::HTTP.start(url.host, url.port) {|http| http.request(request)}
 		end
         
-        # log the page if we're supposed to
-        if self.log_messages
-          doc = Document.new response.body
-          if doc.root.elements["wctp-Confirmation"].elements["wctp-Success"]
-            status_code = 200 
-            status_message = "Message accepted by wctp.amsmsg.net"
-          else
-            status_code = doc.root.elements["wctp-Confirmation"].elements["wctp-Failure"].attributes["errorCode"]
-            status_message = doc.root.elements["wctp-Confirmation"].elements["wctp-Failure"].attributes["errorText"]
-          end
-          self.page_logs.create(:pager_number => pn, :message => msg, :status => status_code, :status_message => status_message)
+        # log the message
+        
+        doc = Document.new response.body
+        if doc.root.elements["wctp-Confirmation"].elements["wctp-Success"]
+          status_code = 200 
+          status_message = "Message accepted by wctp.amsmsg.net"
+        else
+          status_code = doc.root.elements["wctp-Confirmation"].elements["wctp-Failure"].attributes["errorCode"]
+          status_message = doc.root.elements["wctp-Confirmation"].elements["wctp-Failure"].attributes["errorText"]
         end
+		
+		if self.log_messages
+		  log_message = msg
+		else
+		  log_message = "xxx (logging disabled) xxx"
+		end
+        self.page_logs.create(:pager_number => pn, :message => log_message, :status => status_code, :status_message => status_message)
+        
     end
   end
   
