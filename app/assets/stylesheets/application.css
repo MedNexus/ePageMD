@@ -18,10 +18,10 @@ body {
 }
 
 #headerDiv a:link {text-decoration:none; color: white; background-color: navy; padding: 5px; margin-right: 5px; border-radius: 5px}
-#headerDiv a:visited {text-decoration:none; color: white}
-#headerDiv a:hover {text-decoration:none; background-color: blue}
-#headerDiv a:active {text-decoration:underline;}
-.active {background-color: black}
+#headerDiv a:visited {text-decoration:none; color: white; padding: 5px; margin-right: 5px; border-radius: 5px; background-color:navy}
+#headerDiv a:hover {text-decoration:none; background-color: blue; padding: 5px; margin-right: 5px; border-radius: 5px}
+#headerDiv a:active {text-decoration:underline; padding: 5px; margin-right: 5px; border-radius: 5px}
+.active {background-color: black; padding: 5px; margin-right: 5px; border-radius: 5px}
 #mainContentDiv a:link {text-decoration:none; color: navy}
 #mainContentDiv a:visited {text-decoration:none; color: navy}
 #mainContentDiv a:hover {text-decoration:underline;}
@@ -33,6 +33,6 @@ h1 { font-size: 20px; font-family: verdana, arial, sans-serif; color: black}
 .notice {color: #0b0; text-align: left; font-size: 16px; text-align: center; margin-left: 35px; margin-bottom: 30px}
 
 #headerDiv {background-image: url('/assets/logo.png'); background-repeat:no-repeat; height: 50px; padding-top: 20px; width: 675px; border: 1px solid #777; background-color: #6a8de4; margin-left: auto; margin-right: auto; margin-top: 40px; border-radius: 20px; text-align: center; font-size: 16px;}
-#mainContentDiv {padding-top: 20px; width: 675px; border: 1px solid #ccc; background-color: #ddd; margin-left: auto; margin-right: auto; margin-top: 20px; border-radius: 20px;} // text-align: center
+#mainContentDiv {padding-top: 20px; width: 675px; border: 1px solid #ccc; background-color: #ddd; margin-left: auto; margin-right: auto; margin-top: 20px; border-radius: 20px;}
 #footerDiv {width: 650px; text-align: right; margin-left:auto; margin-right: auto; color: #444; margin-top: 8px;}
 #grayText {width: 250px; font-size: 12px; line-height: 16px; padding-top: 25px; color: gray; font-family: arial; text-align: justify;}
