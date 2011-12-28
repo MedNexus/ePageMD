@@ -27,4 +27,8 @@ class SendPageController < ApplicationController
     redirect_to :action => 'index'
   end
   
+  def code
+	# controller specifically designed for rapid code blue / rapid response notifications
+  end
+  
 end
