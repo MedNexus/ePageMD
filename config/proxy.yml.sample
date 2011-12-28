@@ -1,0 +1,9 @@
+development:
+        use_proxy: false
+        
+production:
+        use_proxy: true
+        proxy_url: draconian.proxy.com
+        proxy_port: 8080
+        proxy_username: user
+        proxy_password: password

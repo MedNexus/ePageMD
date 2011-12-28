@@ -8,6 +8,7 @@ class SignOntoPagerController < ApplicationController
   end
   
   def add_pager
+    @virtual_pagers = VirtualPager.find(:all, :order => "name")
     # validate form first
     flash[:error] = "".html_safe
     flash[:error] += "Must select a valid pager id <br/>".html_safe if params[:virtual_pager_id] == nil

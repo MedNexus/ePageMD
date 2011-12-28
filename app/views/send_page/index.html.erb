@@ -5,7 +5,7 @@
 
 <%= form_tag :action => 'send_page' do -%>
 
-<table align="center" style="line-height: 25px">
+<table style="line-height: 25px">
 	<tr valign="top">
 		<td style='font-size: 50px'>
 			1.
@@ -83,7 +83,7 @@
 		<td width="10">&nbsp;</td>
 		<td>
 				<br/>
-				<%= submit_tag 'Send Page', :style => "font-size: 20px" %>
+				<%= submit_tag 'Send Page', :disable_with => "Sending Page, please wait ...", :style => "font-size: 20px" %>
 		</td>
 	</tr>
 </table>
