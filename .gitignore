@@ -5,4 +5,5 @@ tmp/
 .sass-cache/
 .DS_Store
 config/database.yml
+config/proxy.yml
 public/assets

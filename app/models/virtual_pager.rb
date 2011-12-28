@@ -23,7 +23,11 @@ class VirtualPager < ActiveRecord::Base
         request.body = xml_request
     
         # send request
-        response = Net::HTTP.start(url.host, url.port) {|http| http.request(request)}
+		if PROXY['use_proxy']
+			response = Net::HTTP::Proxy(PROXY['proxy_url'], PROXY['proxy_port'], PROXY['proxy_username'], PROXY['proxy_password']).start(url.host, url.port) {|http| http.request(request)}
+		else
+			response = Net::HTTP.start(url.host, url.port) {|http| http.request(request)}
+		end
         
         # log the page if we're supposed to
         if self.log_messages
@@ -54,10 +58,12 @@ class VirtualPager < ActiveRecord::Base
     wctp_alphanumeric.text = msg
     doc << XMLDecl.new("1.0","UTF-8")
 
-    url = URI.parse('http://wctp.amsmsg.net/wctp')
-    request = Net::HTTP::Post.new(url.path)
     return doc.to_s
-    response = Net::HTTP.start(url.host, url.port) {|http| http.request(request)}
+	
+	# These shouldn't be here
+	# url = URI.parse('http://wctp.amsmsg.net/wctp')
+    # request = Net::HTTP::Post.new(url.path)
+    # response = Net::HTTP.start(url.host, url.port) {|http| http.request(request)}
   end
   
   def add_pager(pager_num)

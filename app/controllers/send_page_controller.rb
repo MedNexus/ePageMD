@@ -10,7 +10,7 @@ class SendPageController < ApplicationController
     @error = {}
     @error[:pager] = "<li>Must select a pager</li>".html_safe if params[:virtual_pager_id] == ""
     @error[:message] = "<li>Must enter a message</li>".html_safe if params[:message] == ""
-    if @error != ""
+    if @error.size > 0
       flash[:error] = "Missing fields, please see below"
       @virtual_pagers = VirtualPager.find(:all, :order => "name")
       render :action => 'index'
