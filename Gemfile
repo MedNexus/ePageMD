@@ -3,16 +3,11 @@ source 'http://rubygems.org'
 gem 'rails', '3.1.0'
 gem 'rack', '1.3.5'
 
-# gem 'mysql'
-# gem 'pg', '0.11.0'
+gem 'mysql', :platforms => [:ruby_19, :ruby]
+gem 'pg', '0.11.0', :platforms => [:ruby_19, :ruby]
 gem 'devise', '1.4.9'
-gem 'activerecord-sqlserver-adapter', '3.1.3'
-gem 'ruby-odbc'
-# Bundle edge Rails instead:
-# gem 'rails',     :git => 'git://github.com/rails/rails.git'
-
-# gem 'sqlite3'
-
+gem 'activerecord-sqlserver-adapter', '3.1.3', :platforms => :mingw
+gem 'ruby-odbc', :platforms => :mingw
 gem 'json'
 
 # Gems used only for assets and not required
