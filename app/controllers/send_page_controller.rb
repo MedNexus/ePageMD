@@ -1,7 +1,7 @@
 class SendPageController < ApplicationController
   
   def index
-    @virtual_pagers = VirtualPager.find(:all, :order => "name")
+    @virtual_pagers = VirtualPager.find_all_by_code_level(false)
     @error = {}
   end
   
