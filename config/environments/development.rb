@@ -30,4 +30,7 @@ VirtualPagers::Application.configure do
   
   # output debugging log info
   config.log_level = Logger::WARN
+  
+  # Set TimeZone
+  config.time_zone = "Pacific Time (US & Canada)"
 end
