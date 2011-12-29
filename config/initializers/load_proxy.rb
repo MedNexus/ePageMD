@@ -1,0 +1,1 @@
+PROXY = YAML.load_file("#{Rails.root}/config/proxy.yml")[Rails.env]

@@ -1,11 +1,11 @@
 <h1 style='text-align: center'>Sign On / Off Pagers</h1>
-<%= link_to 'sign on/off multiple pagers', :action => 'multiple' %>
+<center><%= link_to 'sign on/off multiple pagers', :action => 'multiple' %></center>
 
 <% if flash[:error] or flash[:notice] %>
-	<div class="notice"><%= flash[:notice ] %></div>
-	<div class="error"><%= flash[:error ] %></div>
+	<div class="notice"><%= flash[:notice] %></div>
+	<div class="error"><%= flash[:error] %></div>
 <% end %>
-<%= form_tag "/sign_onto_pager/add_pager" do -%>
+<%= form_tag "/sign_on_off/add_pager" do -%>
 
 <table align="center" style="line-height: 25px">
 	<tr valign="middle">
@@ -55,6 +55,6 @@
 		</td>
 	</tr>
 </table>
-
+<br/><br/>
 
 <% end %>

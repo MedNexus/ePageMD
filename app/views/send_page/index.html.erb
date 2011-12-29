@@ -3,21 +3,18 @@
 	<div class="error"><%= flash[:error ]%></div>
 <% end %>
 
-<%= form_tag :action => 'send_page' do -%>
-
-<table align="center" style="line-height: 25px">
+<%= form_for(@routine_page, :url => '/page/send') do |f|-%>
+<%= display_errors(@routine_page.errors) %>
+<center><h1>Send Page</h1></center>
+<table style="line-height: 25px">
 	<tr valign="top">
 		<td style='font-size: 50px'>
 			1.
 		</td>
 		<td width="10">&nbsp;</td>
 		<td style='font-size: 20px'>
-			Select a Pager:<br/>
-			<%-
-				style = "font-size: 20px; width: 300px;"
-				style += "border: 2px solid red;" if @error[:pager]
-			%>
-			<%= select_tag "virtual_pager_id", options_from_collection_for_select(@virtual_pagers, "id", "name"), :style => style, :include_blank => true %>
+			<%= f.label :virtual_pager_id, "Select a Pager:"%><br/>
+			<%= f.select "virtual_pager_id", options_from_collection_for_select(VirtualPager.pagers, "id", "name"), :include_blank => true %>
 			<br/>
 			<br/>
 		</td>
@@ -31,8 +28,8 @@
 		</td>
 		<td width="10">&nbsp;</td>
 		<td style='font-size: 20px'>
-			Enter Patient ID:<br/>
-			<%= text_field_tag 'patient_id', params[:patient_id], :style => 'font-size: 20px; width: 300px;' %>
+			<%= f.label :patient_id, "Enter Patient ID:"%><br/>
+			<%= f.text_field 'patient_id' %>
 			<br/><br/>
 		</td>
 		<td>
@@ -45,12 +42,8 @@
 		</td>
 		<td width="10">&nbsp;</td>
 		<td style='font-size: 20px'>
-			Enter your Your Message:<br/>
-			<%-
-				style = ""
-				style += "border: 2px solid red;" if @error[:pager]
-			%>
-			<%= text_area_tag :message, params[:message], :cols => 41, :rows => 5, :style => style %>
+			<%= f.label :message, "Enter your Your Message:"%><br/>
+			<%= f.text_area :message, :cols => 41, :rows => 5%>
 			<br/><br/>
 		</td>
 		<td>
@@ -63,12 +56,12 @@
 		</td>
 		<td width="10">&nbsp;</td>
 		<td style='font-size: 20px'>
-			How Urgent is this Message?:<br/>
+			<%= f.label :urgency, "How Urgent is this Message?:"%><br/>
 			<span style='font-size: 15px'>
-			<%= radio_button_tag(:urgency, "1") %> Emergent <span id="grayText">(call back immediately)</span><br/>
-			<%= radio_button_tag(:urgency, "2") %> Urgent <span id="grayText">(call back in 5 minutes)</span><br/>
-			<%= radio_button_tag(:urgency, "3", true) %> Routine <span id="grayText">(call back within 30 minutes)</span><br/>
-			<%= radio_button_tag(:urgency, "4") %> FYI <span id="grayText">(No call back necessary)</span><br/>
+			<%= f.radio_button(:urgency, "1") %> Emergent <span id="grayText">(call back immediately)</span><br/>
+			<%= f.radio_button(:urgency, "2") %> Urgent <span id="grayText">(call back in 5 minutes)</span><br/>
+			<%= f.radio_button(:urgency, "3") %> Routine <span id="grayText">(call back within 30 minutes)</span><br/>
+			<%= f.radio_button(:urgency, "4") %> FYI <span id="grayText">(No call back necessary)</span><br/>
 			</span>
 		</td>
 		<td>
@@ -83,7 +76,7 @@
 		<td width="10">&nbsp;</td>
 		<td>
 				<br/>
-				<%= submit_tag 'Send Page', :style => "font-size: 20px" %>
+				<%= submit_tag 'Send Page', :disable_with => "Sending Page, please wait ...", :style => "font-size: 20px" %>
 		</td>
 	</tr>
 </table>
