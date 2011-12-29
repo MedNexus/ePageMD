@@ -11,7 +11,7 @@ class SendPageController < ApplicationController
     @error[:pager] = "<li>Must select a pager</li>".html_safe if params[:virtual_pager_id] == ""
     @error[:message] = "<li>Must enter a message</li>".html_safe if params[:message] == ""
     if @error.size > 0
-      flash[:error] = "Missing fields, please see below"
+      flash.now[:error] = "Missing fields, please see below"
       @virtual_pagers = VirtualPager.find(:all, :order => "name")
       render :action => 'index'
       return nil
@@ -40,7 +40,7 @@ class SendPageController < ApplicationController
         flash[:notice] = "Page Sent!"
         redirect_to :action => 'code'
       else
-        flash[:error] = "Notification FAILED, please use backup notification"
+        flash[:error].now = "Notification FAILED, please use backup notification"
         render :action => 'code'
       end
     else
