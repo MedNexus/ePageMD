@@ -1,0 +1,48 @@
+<% if flash[:notice] or flash[:error ] %>
+	<div class="notice"><%= flash[:notice ]%></div>
+	<div class="error"><%= flash[:error ]%></div>
+<% end %>
+
+<center><h1>Send Code Notification</h1></center>
+<%= form_for(@code_page, :url => '/code/send') do |f| %>
+<%= display_errors(@code_page.errors) %>
+<table align="center" style="line-height: 25px">
+	<tr valign="top">
+		<td style='font-size: 50px'>
+			1.
+		</td>
+		<td width="10">&nbsp;</td>
+		<td style='font-size: 20px'>
+			<%= f.label :virtual_pager_id, "Select a Pager:" %><br/>
+			<div style="font-size: 16px;">
+			<% VirtualPager.code_pagers.each do |cp| %>
+				<%= f.radio_button :virtual_pager_id, cp.id %> <%= cp.name%></br>
+			<% end %>
+			</div>
+			<br/>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td style='font-size: 50px'>
+			2.
+		</td>
+		<td width="10">&nbsp;</td>
+		<td style='font-size: 20px'>
+			<%= f.label :location, "Enter Patient Location:"%><br/>
+			<%= f.text_field :location, :style => 'font-size: 20px; width: 300px;' %>
+		</td>
+	</tr>
+	<tr valign="middle">
+		<td style='font-size: 50px'>
+			&nbsp;
+		</td>
+		<td width="10">&nbsp;</td>
+		<td>
+				<br/>
+				<%= f.submit 'Send Page', :disable_with => "Sending Page, please wait ...", :style => "font-size: 20px" %>
+		</td>
+	</tr>
+</table>
+<br/><br/>
+
+<% end %>

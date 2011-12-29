@@ -26,9 +26,24 @@ class SendPageController < ApplicationController
     end
     redirect_to :action => 'index'
   end
-  
+
+  # controller specifically designed for rapid code blue / rapid response notifications
   def code
-	# controller specifically designed for rapid code blue / rapid response notifications
+    @code_page = CodePage.new
+  end
+  
+  def send_code
+    @code_page = CodePage.new(params[:code_page])
+    if @code_page.valid?
+      # blast away!
+      if @code_page.send_page
+        redirect_to :action => 'code', :notice => "Notification sent!"
+      else
+        render :action => 'code', :alert => "Notification FAILED, please use backup notification"
+      end
+    else
+      render :action => 'code'
+    end
   end
   
 end

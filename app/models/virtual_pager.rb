@@ -31,14 +31,14 @@ class VirtualPager < ActiveRecord::Base
         xml_request = VirtualPager.create_xml_single(msg,pn)
         request.body = xml_request
     
-		# Multi-thread pages, improves page repsonsiveness to large blasts
-        # send request
-		if PROXY['use_proxy']
-			response = Net::HTTP::Proxy(PROXY['proxy_url'], PROXY['proxy_port'], PROXY['proxy_username'], PROXY['proxy_password']).start(url.host, url.port) {|http| http.request(request)}
-		else
-			response = Net::HTTP.start(url.host, url.port) {|http| http.request(request)}
-		end
-        
+        # Multi-thread pages, improves page repsonsiveness to large blasts
+            # send request
+        if PROXY['use_proxy']
+        	response = Net::HTTP::Proxy(PROXY['proxy_url'], PROXY['proxy_port'], PROXY['proxy_username'], PROXY['proxy_password']).start(url.host, url.port) {|http| http.request(request)}
+        else
+        	response = Net::HTTP.start(url.host, url.port) {|http| http.request(request)}
+        end
+    
         # log the message
         
         doc = Document.new response.body
@@ -50,11 +50,12 @@ class VirtualPager < ActiveRecord::Base
           status_message = doc.root.elements["wctp-Confirmation"].elements["wctp-Failure"].attributes["errorText"]
         end
 		
-		if self.log_messages
-		  log_message = msg
-		else
-		  log_message = "xxx (logging disabled) xxx"
-		end
+    		if self.log_messages
+    		  log_message = msg
+    		else
+    		  log_message = "xxx (logging disabled) xxx"
+    		end
+    		
         self.page_logs.create(:pager_number => pn, :message => log_message, :status => status_code, :status_message => status_message)
         
     end
@@ -102,6 +103,10 @@ class VirtualPager < ActiveRecord::Base
     end
   end
   
+  def is_code_level?
+    return self.code_level
+  end
+  
   def number_of_pagers_signed_on
     return self.pagers.size
   end
@@ -119,5 +124,10 @@ class VirtualPager < ActiveRecord::Base
   def all_pager_numbers
     return self.pagers.collect{|x| x.pager_number}
   end
+  
+  def self.code_pagers
+    return VirtualPager.find_all_by_code_level(true)
+  end
+  
   
 end
