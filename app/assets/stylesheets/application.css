@@ -17,6 +17,9 @@ body {
     margin: 0;
 }
 
+#routine_page_virtual_pager_id {font-size: 20px; width: 300px;}
+#routine_page_patient_id {font-size: 20px;}
+
 .field_with_errors {color: red;; display: inline}
 #errorMsgDiv {width: 230px; border: 1px solid #999; background: #bbb; padding: 7px; margin-left: auto; margin-right: auto; margin-bottom: 30px; line-height: 20px; color: #444}
 #errorMsgDiv li {margin-left: 20px }
