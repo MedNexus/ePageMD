@@ -12,15 +12,18 @@ class VirtualPager < ActiveRecord::Base
     # don't send a request if there is no point!
     return false if self.number_of_pagers_signed_on < 1
 	
-	# are we handed a list of pagers to send to? If so, use
-	# that list, if not, get the list of all pagers currently
-	# signed onto virtual pager
-	if pager_list
-		pager_numbers = pager_list
-	else
-		pager_numbers = self.all_pager_numbers
-	end
+  	# are we handed a list of pagers to send to? If so, use
+  	# that list, if not, get the list of all pagers currently
+  	# signed onto virtual pager
+  	if pager_list
+  		pager_numbers = pager_list
+  	else
+  		pager_numbers = self.all_pager_numbers
+  	end
 
+    # variable to store if the pager successfully was sent to at least 1 person
+    succeeded = 0
+    
     pager_numbers.each do |pn|
         # American Messaging WCTP URL
         target_url = 'http://wctp.amsmsg.net/wctp'
@@ -45,6 +48,7 @@ class VirtualPager < ActiveRecord::Base
         if doc.root.elements["wctp-Confirmation"].elements["wctp-Success"]
           status_code = 200 
           status_message = "Message accepted by wctp.amsmsg.net"
+          succeeded += 1
         else
           status_code = doc.root.elements["wctp-Confirmation"].elements["wctp-Failure"].attributes["errorCode"]
           status_message = doc.root.elements["wctp-Confirmation"].elements["wctp-Failure"].attributes["errorText"]
@@ -58,6 +62,12 @@ class VirtualPager < ActiveRecord::Base
     		
         self.page_logs.create(:pager_number => pn, :message => log_message, :status => status_code, :status_message => status_message)
         
+    end
+    
+    if succeeded < 1
+      return false
+    else
+      return succeeded
     end
   end
   
@@ -112,13 +122,13 @@ class VirtualPager < ActiveRecord::Base
   end
   
   def remove_pager(pager_num)
-	return false unless is_pager_signed_on?(pager_num)
+  	return false unless is_pager_signed_on?(pager_num)
     if self.pagers.find_by_pager_number(pager_num).destroy
-		self.send_page("You have signed off of: #{self.name}", [pager_num])
-		return true
-	else
-		return false
-	end
+  		self.send_page("You have signed off of: #{self.name}", [pager_num])
+  		return true
+  	else
+  		return false
+  	end
   end
   
   def all_pager_numbers
@@ -127,6 +137,10 @@ class VirtualPager < ActiveRecord::Base
   
   def self.code_pagers
     return VirtualPager.find_all_by_code_level(true)
+  end
+  
+  def self.pagers
+    return VirtualPager.find_all_by_code_level(false)
   end
   
   

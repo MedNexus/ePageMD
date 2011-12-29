@@ -4,8 +4,8 @@ VirtualPagers::Application.routes.draw do
   match 'sign_on_off/add_pager' => "sign_onto_pager#add_pager"
   match 'sign_on_off/multiple' => "sign_onto_pager#multiple"
   match 'sign_on_off' => "sign_onto_pager#index"
-  match 'transmit' => 'send_page#send_page'
-  match 'send_page' => 'send_page#index'
+  match 'page/send' => 'send_page#send_page'
+  match 'page' => 'send_page#index'
   match 'code' => 'send_page#code'
   match 'code/send' => 'send_page#send_code'
   
