@@ -37,9 +37,11 @@ class SendPageController < ApplicationController
     if @code_page.valid?
       # blast away!
       if @code_page.send_page
-        redirect_to :action => 'code', :notice => "Notification sent!"
+        flash[:notice] = "Page Sent!"
+        redirect_to :action => 'code'
       else
-        render :action => 'code', :alert => "Notification FAILED, please use backup notification"
+        flash[:error] = "Notification FAILED, please use backup notification"
+        render :action => 'code'
       end
     else
       render :action => 'code'

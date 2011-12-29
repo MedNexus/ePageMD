@@ -14,4 +14,9 @@ module ApplicationHelper
     str += "</div>".html_safe if errors.full_messages.size > 0
   end
   
+  def display_notice
+    str = "<div id='notice'>#{flash[:notice]}</div>".html_safe
+    str += "<div id='notice'>#{flash[:alert]}</div>".html_safe
+  end
+  
 end

@@ -32,7 +32,7 @@ class VirtualPager < ActiveRecord::Base
         request.body = xml_request
     
         # Multi-thread pages, improves page repsonsiveness to large blasts
-            # send request
+        # send request
         if PROXY['use_proxy']
         	response = Net::HTTP::Proxy(PROXY['proxy_url'], PROXY['proxy_port'], PROXY['proxy_username'], PROXY['proxy_password']).start(url.host, url.port) {|http| http.request(request)}
         else
