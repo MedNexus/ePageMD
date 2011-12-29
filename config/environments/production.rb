@@ -57,4 +57,7 @@ VirtualPagers::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
+  
+  # Set TimeZone
+  config.time_zone = "Pacific Time (US & Canada)"
 end

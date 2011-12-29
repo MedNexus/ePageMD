@@ -17,6 +17,9 @@ body {
     margin: 0;
 }
 
+.field_with_errors {color: red;; display: inline}
+#errorMsgDiv {width: 230px; border: 1px solid #999; background: #bbb; padding: 7px; margin-left: auto; margin-right: auto; margin-bottom: 30px; line-height: 20px; color: #444}
+#errorMsgDiv li {margin-left: 20px }
 #headerDiv a:link {text-decoration:none; color: white; background-color: navy; padding: 5px; margin-right: 5px; line-height: 30px}
 #headerDiv a:visited {text-decoration:none; color: white; padding: 5px; margin-right: 5px; background-color:navy; line-height: 30px}
 #headerDiv a:hover {text-decoration:none; background-color: blue; padding: 5px; margin-right: 5px;line-height: 30px}
@@ -32,7 +35,7 @@ h1 { font-size: 20px; font-family: verdana, arial, sans-serif; color: black}
 .error {color: #d00; text-align: left; font-size: 16px; text-align: center; margin-bottom: 30px;}
 .notice {color: #0b0; text-align: left; font-size: 16px; text-align: center; margin-left: 35px; margin-bottom: 30px}
 
-#headerDiv {background-image: url('/assets/logo.png'); background-repeat:no-repeat; height: 50px; padding-top: 20px; width: 715px; border: 2px solid #777; background-color: #6a8de4; margin-left: auto; margin-right: auto; margin-top: 40px; text-align: center; font-size: 16px;}
+#headerDiv {background-image: url('/assets/logo-small.png'); background-repeat:no-repeat; height: 50px; padding-top: 20px; width: 715px; border: 2px solid #777; background-color: #6a8de4; margin-left: auto; margin-right: auto; margin-top: 40px; text-align: center; font-size: 16px;}
 #mainContentDiv {padding-top: 20px; width: 675px; border: 2px solid #777; background-color: #ddd; margin-left: auto; margin-right: auto; margin-top: 20px; padding-left: 20px; padding-right: 20px}
 #footerDiv {width: 650px; text-align: right; margin-left:auto; margin-right: auto; color: #444; margin-top: 8px;}
 #grayText {width: 250px; font-size: 12px; line-height: 16px; padding-top: 25px; color: gray; font-family: arial; text-align: justify;}
