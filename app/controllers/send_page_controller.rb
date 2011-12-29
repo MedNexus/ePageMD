@@ -40,7 +40,7 @@ class SendPageController < ApplicationController
         flash[:notice] = "Page Sent!"
         redirect_to :action => 'code'
       else
-        flash[:error].now = "Notification FAILED, please use backup notification"
+        flash.now[:error] = "Notification FAILED, please use backup notification"
         render :action => 'code'
       end
     else

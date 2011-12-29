@@ -3,9 +3,10 @@
 	<div class="error"><%= flash[:error ]%></div>
 <% end %>
 
-<center><h1>Send Code Notification</h1></center>
+
 <%= form_for(@code_page, :url => '/code/send') do |f| %>
 <%= display_errors(@code_page.errors) %>
+<center><h1>Send Code Notification</h1></center>
 <table align="center" style="line-height: 25px">
 	<tr valign="top">
 		<td style='font-size: 50px'>

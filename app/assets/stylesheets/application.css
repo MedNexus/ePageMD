@@ -18,7 +18,7 @@ body {
 }
 
 .field_with_errors {color: red;; display: inline}
-#errorMsgDiv {width: 230px; border: 1px solid #999; background: #bbb; padding: 7px; margin-left: auto; margin-right: auto; margin-bottom: 10px; line-height: 20px; color: #444}
+#errorMsgDiv {width: 230px; border: 1px solid #999; background: #bbb; padding: 7px; margin-left: auto; margin-right: auto; margin-bottom: 30px; line-height: 20px; color: #444}
 #errorMsgDiv li {margin-left: 20px }
 #headerDiv a:link {text-decoration:none; color: white; background-color: navy; padding: 5px; margin-right: 5px; line-height: 30px}
 #headerDiv a:visited {text-decoration:none; color: white; padding: 5px; margin-right: 5px; background-color:navy; line-height: 30px}
