@@ -95,10 +95,9 @@ class VirtualPager < ActiveRecord::Base
       return nil if self.is_pager_signed_on?(pg_i)
       pager = self.pagers.create(:pager_number => pg_i)
 	  
-	  # Send notification to the user that they are signed on
-	  if pager
-		self.send_page("You are now covering: #{self.name}", [pager.pager_number])
-	  end
+  	  # Send notification to the user that they are signed on
+		  self.send_page("You are now covering: #{self.name}", [pager.pager_number]) if pager
+		  return true
     else
       return nil
     end

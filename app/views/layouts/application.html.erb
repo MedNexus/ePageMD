@@ -13,20 +13,25 @@
 	<% if user_signed_in? %>
 		<%= link_to 'Send Page', '/', :class => is_active?('send_page') %>
 		<%= link_to 'Sign On/Off', '/sign_on_off', :class => is_active?('sign_onto_pager') %>
-		<%= link_to 'Admin', '/virtual_pagers', :class => is_active?('virtual_pagers')%>
-		<%= link_to('Profile', edit_user_registration_path, :class => is_active?('devise/registrations')) %>
-		<%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+	
+		<%= link_to 'Code', '/code', :class => is_active?('code'), :style => 'background-color: #B00'%>
+		
 
 	<% else %>
 	 			<%= link_to 'Send Page', '/', :class => is_active?('send_page') %>
 				<%= link_to 'Sign On/Off', '/sign_on_off', :class => is_active?('sign_onto_pager')%>
-				<%= link_to('Admin', new_user_session_path, :class => is_active?('devise/sessions'))%>
+				<%= link_to 'Code', '/code', :class => is_active?('code'), :style => 'background-color: #B00'%>
 	<% end %></div>
 </div>
 <div id="mainContentDiv">
 	<%= yield %>
 </div>
-<div id="footerDiv">&copy; <%= Time.now.year %> - <i>e</i>PageMD</div>
+<div id="footerDiv">&copy; <%= Time.now.year %> - <i>e</i>PageMD - <%= link_to('Admin', '/virtual_pagers') %>
+	<% if user_signed_in? %>
+		- <%= link_to('Profile', edit_user_registration_path) %>
+		- <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+	<% end %>
+</div>
 
 </body>
 </html>

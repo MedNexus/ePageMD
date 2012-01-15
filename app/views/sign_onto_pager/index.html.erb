@@ -1,11 +1,13 @@
 <h1 style='text-align: center'>Sign On / Off Pagers</h1>
-<center><%= link_to 'sign on/off multiple pagers', :action => 'multiple' %></center>
-
-<% if flash[:error] or flash[:notice] %>
-	<div class="notice"><%= flash[:notice] %></div>
-	<div class="error"><%= flash[:error] %></div>
+<center><%# link_to 'sign on/off multiple pagers', :action => 'multiple' %></center>
+<br/>
+<% if flash[:notice] or flash[:error ] %>
+	<div class="notice"><%= flash[:notice ]%></div>
+	<div class="error"><%= flash[:error ]%></div>
 <% end %>
-<%= form_tag "/sign_on_off/add_pager" do -%>
+
+<%= form_for(@sign_on_off, :url => '/sign_on_off/add_pager') do |f|-%>
+<%= display_errors(@sign_on_off.errors) %>
 
 <table align="center" style="line-height: 25px">
 	<tr valign="middle">
@@ -15,8 +17,8 @@
 		<td width="10">&nbsp;</td>
 		<td style='font-size: 20px'>
 			<br/>
-			Select a Virtual Pager:<br/>
-			<%= select_tag "virtual_pager_id", options_from_collection_for_select(@virtual_pagers, "id", "name"), :style => "font-size: 20px", :include_blank => true, :style => 'width: 220px' %>
+			<%= f.label :virtual_pager_id, "Select a Virtual Pager:" %> <br/>
+			<%= f.select "virtual_pager_id", options_from_collection_for_select(VirtualPager.find(:all, :order => "name"), "id", "name"), :include_blank => true %>
 		</td>
 	</tr>
 	<tr valign="middle">
@@ -26,8 +28,8 @@
 		<td width="10">&nbsp;</td>
 		<td style='font-size: 20px'>
 			<br/>
-			Enter your Pager Number:<br/>
-			<%= text_field_tag 'pager_number', nil, :style => 'font-size: 20px' %>
+			<%= f.label :pager_number, "Enter your Pager Number:"%><br/>
+			<%= f.text_field :pager_number %>
 		</td>
 	</tr>
 	<tr valign="middle">
@@ -37,10 +39,10 @@
 		<td width="10">&nbsp;</td>
 		<td style='font-size: 20px'>
 			<br/>
-			What would you like to do?:<br/>
+			<%= f.label :sign_on_off, "What would you like to do?:"%><br/>
 			<span style='font-size: 15px'>
-			<%= radio_button_tag(:sign_on_off, "ON") %> Sign On 
-			<%= radio_button_tag(:sign_on_off, "OFF") %> Sign Off
+			<%= f.radio_button(:sign_on_off, "ON") %> Sign On
+			<%= f.radio_button(:sign_on_off, "OFF") %> Sign Off
 			</span>
 		</td>
 	</tr>
@@ -51,7 +53,7 @@
 		<td width="10">&nbsp;</td>
 		<td>
 				<br/>
-				<%= submit_tag 'Update Virtual Pager', :style => "font-size: 20px" %>
+				<%= f.submit 'Update Virtual Pager', :style => "font-size: 20px" %>
 		</td>
 	</tr>
 </table>
