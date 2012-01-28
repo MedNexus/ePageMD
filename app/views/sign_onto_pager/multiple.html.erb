@@ -1,0 +1,67 @@
+<h1 style='text-align: center'>Sign On / Off Multiple Pagers</h1>
+<center><%= link_to 'sign on/off single pager', :action => 'index' %></center>
+
+<% if flash[:notice] or flash[:error ] %>
+	<div class="notice"><%= flash[:notice ]%></div>
+	<div class="error"><%= flash[:error ]%></div>
+<% end %>
+
+<%= form_tag '/sign_on_off/multiple_process' do %>
+
+<table align="center" style="line-height: 25px">
+	<tr valign="middle">
+		<td style='font-size: 50px'>
+			1.
+		</td>
+		<td width="10">&nbsp;</td>
+		<td style='font-size: 20px'>
+			<br/>
+			Your Pager Number:<br/>
+			<%= number_to_phone(@sign_onoff_multiple.pager_number, :area_code => true) %><br/>
+			<input type="hidden" value="<%=@sign_onoff_multiple.pager_number%>" name="pager_number">
+			<span style='font-size: 10px'><%= link_to("change pager number", :action => "multiple")%></span><br/>
+		</td>
+	</tr>
+	<tr valign="middle">
+		<td style='font-size: 50px'>
+			2.
+		</td>
+		<td width="10">&nbsp;</td>
+		<td style='font-size: 20px'>
+			<br/>
+			Un-Select Pagers to Sign Off:<br/>
+			<div style='font-size: 15px; line-height: 15px'>
+			<% @sign_onoff_multiple.list_signed_on.each do |vp| %>
+				<%= check_box "virtual_pager_id", vp.id, :checked => true %> <%= vp.name %><br/>
+			<% end %>
+			</div>
+		</td>
+	</tr>
+	<tr valign="middle">
+		<td style='font-size: 50px'>
+			3.
+		</td>
+		<td width="10">&nbsp;</td>
+		<td style='font-size: 20px'>
+			<br/>
+			Select Pagers to Sign On:<br/>
+			<div style='font-size: 15px; line-height: 15px'>
+			<% @sign_onoff_multiple.list_signed_off.each do |vp| %>
+				<%= check_box "virtual_pager_id", vp.id %> <%= vp.name %><br/>
+			<% end %>
+			</div>
+		</td>
+	</tr>
+	<tr valign="middle">
+		<td style='font-size: 50px'>
+			&nbsp;
+		</td>
+		<td width="10">&nbsp;</td>
+		<td>
+				<br/>
+				<%= submit_tag "Next Step", :style => 'font-size: 20px' %>
+		</td>
+	</tr>
+	
+</table>
+<% end %>

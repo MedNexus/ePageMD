@@ -1,0 +1,36 @@
+<h1 style='text-align: center'>Sign On / Off Multiple Pagers</h1>
+<center><%= link_to 'sign on/off single pager', :action => 'index' %></center>
+
+<br/>
+<% if flash[:notice] or flash[:error ] %>
+	<div class="notice"><%= flash[:notice ]%></div>
+	<div class="error"><%= flash[:error ]%></div>
+<% end %>
+
+<%= form_tag '/sign_on_off/multiple' do %>
+
+<table align="center" style="line-height: 25px">
+	<tr valign="middle">
+		<td style='font-size: 50px'>
+			1.
+		</td>
+		<td width="10">&nbsp;</td>
+		<td style='font-size: 20px'>
+			<br/>
+			Enter Your Pager Number:<br/>
+			<%= text_field_tag "pager_number", "", :style => 'font-size: 20px' %>
+		</td>
+	</tr>
+	<tr valign="middle">
+		<td style='font-size: 50px'>
+			&nbsp;
+		</td>
+		<td width="10">&nbsp;</td>
+		<td>
+				<br/>
+				<%= submit_tag "Next Step", :style => 'font-size: 20px' %>
+		</td>
+	</tr>
+	
+</table>
+<% end %>
