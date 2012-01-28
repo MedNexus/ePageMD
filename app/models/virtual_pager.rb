@@ -24,44 +24,48 @@ class VirtualPager < ActiveRecord::Base
     # variable to store if the pager successfully was sent to at least 1 person
     succeeded = 0
     
-    pager_numbers.each do |pn|
-        # American Messaging WCTP URL
-        target_url = 'http://wctp.amsmsg.net/wctp'
-        url = URI.parse(target_url)
-        request = Net::HTTP::Post.new(url.path)
+    begin
+      pager_numbers.each do |pn|
+          # American Messaging WCTP URL
+          target_url = 'http://wctp.amsmsg.net/wctp'
+          url = URI.parse(target_url)
+          request = Net::HTTP::Post.new(url.path)
     
-        # generate XMl request
-        xml_request = VirtualPager.create_xml_single(msg,pn)
-        request.body = xml_request
+          # generate XMl request
+          xml_request = VirtualPager.create_xml_single(msg,pn)
+          request.body = xml_request
     
-        # Multi-thread pages, improves page repsonsiveness to large blasts
-        # send request
-        if PROXY['use_proxy']
-        	response = Net::HTTP::Proxy(PROXY['proxy_url'], PROXY['proxy_port'], PROXY['proxy_username'], PROXY['proxy_password']).start(url.host, url.port) {|http| http.request(request)}
-        else
-        	response = Net::HTTP.start(url.host, url.port) {|http| http.request(request)}
-        end
+          # Multi-thread pages, improves page repsonsiveness to large blasts
+          # send request
+          if PROXY['use_proxy']
+          	response = Net::HTTP::Proxy(PROXY['proxy_url'], PROXY['proxy_port'], PROXY['proxy_username'], PROXY['proxy_password']).start(url.host, url.port) {|http| http.request(request)}
+          else
+          	response = Net::HTTP.start(url.host, url.port) {|http| http.request(request)}
+          end
     
-        # log the message
+          # log the message
         
-        doc = Document.new response.body
-        if doc.root.elements["wctp-Confirmation"].elements["wctp-Success"]
-          status_code = 200 
-          status_message = "Message accepted by wctp.amsmsg.net"
-          succeeded += 1
-        else
-          status_code = doc.root.elements["wctp-Confirmation"].elements["wctp-Failure"].attributes["errorCode"]
-          status_message = doc.root.elements["wctp-Confirmation"].elements["wctp-Failure"].attributes["errorText"]
-        end
+          doc = Document.new response.body
+          if doc.root.elements["wctp-Confirmation"].elements["wctp-Success"]
+            status_code = 200 
+            status_message = "Message accepted by wctp.amsmsg.net"
+            succeeded += 1
+          else
+            status_code = doc.root.elements["wctp-Confirmation"].elements["wctp-Failure"].attributes["errorCode"]
+            status_message = doc.root.elements["wctp-Confirmation"].elements["wctp-Failure"].attributes["errorText"]
+          end
 		
-    		if self.log_messages
-    		  log_message = msg
-    		else
-    		  log_message = "xxx (logging disabled) xxx"
-    		end
+      		if self.log_messages
+      		  log_message = msg
+      		else
+      		  log_message = "xxx (logging disabled) xxx"
+      		end
     		
-        self.page_logs.create(:pager_number => pn, :message => log_message, :status => status_code, :status_message => status_message)
+          self.page_logs.create(:pager_number => pn, :message => log_message, :status => status_code, :status_message => status_message)
         
+      end
+    rescue
+      return false
     end
     
     if succeeded < 1
