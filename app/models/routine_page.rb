@@ -19,7 +19,7 @@ class RoutinePage
   def send_page
     begin
       vp = VirtualPager.find_by_id(self.virtual_pager_id)
-      message = "#{self.urgency_as_symbol}, ##{self.patient_id}: #{self.message}"
+      message = "#{self.urgency_as_symbol}, #{vp.short_code}, ##{self.patient_id}: #{self.message}"
       return vp.send_page(message)
     rescue
       return false
