@@ -10,7 +10,9 @@ class VirtualPager < ActiveRecord::Base
   
   def send_page(msg,pager_list=nil) 
     # don't send a request if there is no point!
-    return false if self.number_of_pagers_signed_on < 1
+    # this line is preventing notifications of people 
+    # being the last signed off pager
+    # return false if self.number_of_pagers_signed_on < 1
 	
   	# are we handed a list of pagers to send to? If so, use
   	# that list, if not, get the list of all pagers currently
