@@ -5,12 +5,14 @@ include REXML
 class VirtualPager < ActiveRecord::Base
   has_many :pagers
   has_many :page_logs
-  validates_uniqueness_of :name
-  validates_presence_of :name
+  validates_uniqueness_of :name, :short_code
+  validates_presence_of :name, :short_code
   
   def send_page(msg,pager_list=nil) 
     # don't send a request if there is no point!
-    return false if self.number_of_pagers_signed_on < 1
+    # this line is preventing notifications of people 
+    # being the last signed off pager
+    # return false if self.number_of_pagers_signed_on < 1
 	
   	# are we handed a list of pagers to send to? If so, use
   	# that list, if not, get the list of all pagers currently

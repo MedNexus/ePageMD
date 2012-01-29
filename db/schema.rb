@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111228181629) do
+ActiveRecord::Schema.define(:version => 20120129022735) do
 
   create_table "page_logs", :force => true do |t|
     t.text     "pager_number"
@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(:version => 20111228181629) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "code_level"
+    t.text     "short_code"
   end
 
 end
